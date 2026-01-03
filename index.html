@@ -35,7 +35,7 @@
       overflow-x:hidden;
     }
 
-    /* Ambient + steel texture (CSS only) */
+    /* Ambient + steel texture */
     .bg-ambient{
       position:fixed; inset:0; z-index:-4; pointer-events:none;
       background:
@@ -100,21 +100,50 @@
       min-width: 260px;
     }
 
-    /* لوغو: احفظ الصورة اللي ارسلتها داخل نفس المشروع بهذا المسار:
-       images/IMG-20260103-WA0031.jpg
-    */
-    .logo{
-      width:56px; height:56px; border-radius:16px;
+    .logo-wrap{
+      width:60px; height:60px;
+      border-radius:16px;
       border:1px solid var(--border);
-      box-shadow: 0 14px 36px rgba(0,0,0,.42);
-      object-fit:cover;
       background: rgba(255,255,255,.03);
+      box-shadow: 0 16px 40px rgba(0,0,0,.45);
+      position:relative;
+      overflow:hidden;
       flex: 0 0 auto;
+      display:grid;
+      place-items:center;
+    }
+    .logo-wrap::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(120px 80px at 30% 15%, rgba(255,122,24,.30), transparent 60%),
+        radial-gradient(120px 80px at 80% 60%, rgba(37,211,102,.14), transparent 62%);
+      filter: blur(10px);
+      opacity:.95;
+      z-index:0;
+    }
+    .logo-img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      z-index:1;
+    }
+    .logo-fallback{
+      display:none;
+      z-index:1;
+      width:100%;
+      height:100%;
+      place-items:center;
+      font-weight: 900;
+      letter-spacing:.3px;
+      color: rgba(242,244,247,.92);
+      background: rgba(0,0,0,.20);
     }
 
     .brand-text{display:flex; flex-direction:column}
     .brand-title{
-      font-size: 18px; font-weight: 1000; letter-spacing:.1px;
+      font-size: 18px; font-weight: 950; letter-spacing:.1px;
       line-height:1.15;
       text-shadow: 0 18px 55px rgba(0,0,0,.45);
     }
@@ -122,7 +151,7 @@
       margin-top: 3px;
       color: var(--muted);
       font-size: 12.6px;
-      max-width: 620px;
+      max-width: 640px;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
@@ -136,7 +165,7 @@
     .nav a{
       text-decoration:none;
       color: rgba(242,244,247,.92);
-      font-weight: 950;
+      font-weight: 900;
       font-size: 13.5px;
       padding: 10px 12px;
       border-radius: 999px;
@@ -194,7 +223,7 @@
     .h2{
       font-size: 20px;
       margin:0;
-      font-weight: 1100;
+      font-weight: 950;
       letter-spacing:.2px;
     }
     .hint{
@@ -217,13 +246,14 @@
       overflow:hidden;
       padding: 26px 22px;
       isolation:isolate;
+      --mx: 50%;
+      --my: 30%;
     }
     .hero-shell::before{
       content:"";
       position:absolute; inset:-2px;
       background:
-        radial-gradient(540px 260px at 0% 0%, rgba(255,122,24,.24), transparent 60%),
-        radial-gradient(460px 240px at 100% 10%, rgba(255,122,24,.14), transparent 65%),
+        radial-gradient(540px 260px at var(--mx) var(--my), rgba(255,122,24,.22), transparent 60%),
         radial-gradient(540px 320px at 20% 120%, rgba(37,211,102,.10), transparent 62%);
       opacity:.85;
       z-index:-2;
@@ -268,7 +298,7 @@
       background: rgba(255,255,255,.03);
       color: rgba(242,244,247,.88);
       font-size: 12.5px;
-      font-weight: 950;
+      font-weight: 900;
       white-space:nowrap;
     }
     .chip-dot{
@@ -282,7 +312,7 @@
       font-size: clamp(28px, 3.2vw, 44px);
       line-height:1.12;
       margin: 12px 0 10px;
-      font-weight: 1200;
+      font-weight: 950;
       letter-spacing:.2px;
     }
     .hero-desc{
@@ -303,7 +333,7 @@
       display:inline-flex; align-items:center; justify-content:center; gap:10px;
       border-radius: 999px;
       padding: 12px 16px;
-      font-weight: 1000;
+      font-weight: 950;
       text-decoration:none;
       border: 1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.04);
@@ -362,7 +392,7 @@
       border: 1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
     }
-    .kpi-title{font-weight: 1100; font-size: 14px; margin:0 0 2px}
+    .kpi-title{font-weight: 950; font-size: 14px; margin:0 0 2px}
     .kpi-sub{margin:0; color: var(--muted); font-size: 13px}
 
     /* Sparks canvas */
@@ -377,7 +407,7 @@
       mix-blend-mode: screen;
     }
 
-    /* Cards grid */
+    /* Grid cards */
     .grid{
       display:grid;
       grid-template-columns: repeat(12, 1fr);
@@ -411,7 +441,7 @@
     }
     .card-title{
       margin:0 0 6px;
-      font-weight: 1100;
+      font-weight: 950;
       font-size: 15.5px;
       letter-spacing:.15px;
       display:flex;
@@ -445,7 +475,7 @@
       border: 1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
       color: rgba(242,244,247,.90);
-      font-weight: 1000;
+      font-weight: 950;
       font-size: 13.5px;
       user-select:none;
     }
@@ -486,13 +516,13 @@
       border-radius: 999px;
       border: 1px solid rgba(255,255,255,.12);
       background: rgba(0,0,0,.20);
-      font-weight: 1100;
+      font-weight: 950;
       margin-bottom: 10px;
     }
-    .step-title{margin:0 0 6px; font-weight: 1100}
+    .step-title{margin:0 0 6px; font-weight: 950}
     .step-desc{margin:0; color: rgba(242,244,247,.78); font-size: 13.5px}
 
-    /* Request form panel */
+    /* Panel + form */
     .panel{
       border-radius: var(--radius2);
       border: 1px solid rgba(255,255,255,.10);
@@ -501,12 +531,14 @@
       padding: 16px;
       position:relative;
       overflow:hidden;
+      --mx: 50%;
+      --my: 30%;
     }
     .panel::before{
       content:"";
       position:absolute; inset:-1px;
       background:
-        radial-gradient(900px 340px at 15% 0%, rgba(255,122,24,.16), transparent 62%),
+        radial-gradient(900px 340px at var(--mx) var(--my), rgba(255,122,24,.16), transparent 62%),
         radial-gradient(700px 260px at 90% 20%, rgba(37,211,102,.10), transparent 62%),
         linear-gradient(180deg, rgba(255,255,255,.04), transparent 35%);
       opacity:.9;
@@ -528,7 +560,7 @@
     label{
       display:block;
       font-size: 13px;
-      font-weight: 1000;
+      font-weight: 950;
       color: rgba(242,244,247,.90);
       margin-bottom: 6px;
     }
@@ -558,11 +590,6 @@
       justify-content:flex-start;
       margin-top: 10px;
     }
-    .note{
-      color: var(--muted);
-      font-size: 13px;
-      margin: 10px 0 0;
-    }
     .preview{
       margin-top: 12px;
       border-radius: 16px;
@@ -584,7 +611,6 @@
       transition: opacity .25s var(--ease), transform .25s var(--ease);
     }
     .status.on{opacity:1; transform: translateY(0)}
-
     .hidden{display:none !important;}
 
     /* Contact pills */
@@ -605,7 +631,7 @@
       border: 1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
       color: rgba(242,244,247,.90);
-      font-weight: 1000;
+      font-weight: 950;
       text-decoration:none;
       transition: transform .18s var(--ease), border-color .18s var(--ease), background .18s var(--ease);
     }
@@ -653,7 +679,7 @@
       padding: 8px 10px;
       border-radius: 999px;
       color: rgba(242,244,247,.92);
-      font-weight: 1000;
+      font-weight: 950;
       font-size: 12.5px;
       opacity: 0;
       transform: translateX(8px);
@@ -695,7 +721,6 @@
       .header-inner{flex-direction:column; align-items:flex-start}
       .nav{width:100%; justify-content:flex-start}
       .social{width:100%; justify-content:flex-start}
-      .logo{width:52px; height:52px}
       .card{grid-column: span 12}
       .steps{grid-template-columns: 1fr}
       .step{border-left:0; border-top: 1px solid rgba(255,255,255,.08)}
@@ -704,7 +729,6 @@
       .wa-tip{display:none}
       .field{grid-column: span 12}
     }
-
     @media (prefers-reduced-motion: reduce){
       *{animation:none !important; transition:none !important}
       html{scroll-behavior:auto}
@@ -721,7 +745,11 @@
     <div class="wrap">
       <div class="header-inner">
         <div class="brand" aria-label="الهوية">
-          <img class="logo" src="images/IMG-20260103-WA0031.jpg" alt="لوغو حلا الحداد" />
+          <div class="logo-wrap" aria-label="لوغو">
+            <img class="logo-img" src="images/logo.png" alt="لوغو حلا الحداد"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+            <span class="logo-fallback" aria-hidden="true">حلا</span>
+          </div>
           <div class="brand-text">
             <div class="brand-title">حلا الحداد</div>
             <div class="brand-subtitle">لجميع أنواع الحدادة والديكورات وتنصيب منضومات الطاقة الشمسية</div>
@@ -803,7 +831,7 @@
               </div>
               <div class="kpi-item">
                 <p class="kpi-title">تنظيم بالطلب</p>
-                <p class="kpi-sub">قياسات أو قدرة طاقة شمسية… كل شيء داخل نموذج واحد.</p>
+                <p class="kpi-sub">قياسات أو قدرة طاقة… كل شيء داخل نموذج واحد.</p>
               </div>
             </div>
           </aside>
@@ -814,14 +842,14 @@
     <section id="services">
       <div class="section-head">
         <h2 class="h2">الخدمات</h2>
-        <p class="hint">خدمات رئيسية + أمثلة أعمال (بدون اقتراحات).</p>
+        <p class="hint">الخدمات الرئيسية + أمثلة (بدون اقتراحات).</p>
       </div>
 
       <div class="grid">
         <article class="card reveal" data-spotlight>
           <h3 class="card-title">
             <svg class="svc-ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 21V3h16v18H4Zm2-2h12V5H6v14Z"/></svg>
-            جميع أنواع الحدادة
+            لجميع أنواع الحدادة
           </h3>
           <p class="card-desc">تنفيذ أعمال حدادة متنوعة حسب الطلب.</p>
         </article>
@@ -845,7 +873,7 @@
         <article class="card reveal" data-spotlight style="grid-column: span 12;">
           <h3 class="card-title">
             <svg class="svc-ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 17l6-6 4 4 7-7 1 1-8 8-4-4-5 5H3Z"/></svg>
-            أمثلة أعمال (بدون اقتراحات)
+            أمثلة أعمال
           </h3>
           <div class="chips" aria-label="أمثلة">
             <span class="chip2">أبواب</span>
@@ -976,8 +1004,9 @@
               <svg class="svc-ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5L4 8V6l8 5 8-5v2Z"/></svg>
               جاهزين للطلب والاستفسار
             </h3>
+
             <p class="card-desc" style="margin-bottom:10px;">
-              رقم واتساب: <span dir="ltr" style="font-weight:1200; color:rgba(242,244,247,.92)">+964 776 683 1610</span>
+              رقم واتساب: <span dir="ltr" style="font-weight:950; color:rgba(242,244,247,.92)">+964 776 683 1610</span>
             </p>
 
             <div class="contact-row" aria-label="روابط التواصل">
@@ -1160,18 +1189,19 @@
 
       const lines = [];
       lines.push("السلام عليكم");
-      lines.push("أريد طلب:");
+      lines.push("أريد طلب من (حلا الحداد):");
       lines.push(`- الخدمة: ${service || "—"}`);
 
       if (isSolar()){
-        if (kw) lines.push(`- القدرة المطلوبة: ${kw} kW`);
-        else lines.push("- القدرة المطلوبة: (غير محددة)");
-        if (solarType) lines.push(`- نوع المنظومة: ${solarType}`);
+        lines.push(`- طاقة شمسية:`);
+        lines.push(`  - القدرة المطلوبة: ${kw ? (kw + " kW") : "غير محددة"}`);
+        lines.push(`  - نوع المنظومة: ${solarType || "غير محدد"}`);
       } else {
+        lines.push(`- حدادة/ديكور:`);
         if (w || h) {
-          lines.push(`- القياس: ${w ? (w + " سم") : "—"} عرض × ${h ? (h + " سم") : "—"} ارتفاع`);
+          lines.push(`  - القياس: ${w ? (w + " سم") : "—"} عرض × ${h ? (h + " سم") : "—"} ارتفاع`);
         } else {
-          lines.push("- القياس: (سأرسل قياس/صورة)");
+          lines.push("  - القياس: سأرسل قياس/صورة");
         }
       }
 
@@ -1356,4 +1386,3 @@
   </script>
 </body>
 </html>
-```0
